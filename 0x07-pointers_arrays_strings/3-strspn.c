@@ -1,14 +1,25 @@
-/**                                                              * _strspn - Returns the number of bytes in the initial segment
- * of s which consist only of bytes from accept                  *                                                               * @s: string to search                                          * @accept: characters to look for                               *                                                               * Return: number of bytes that matched at start of string       */                                                             unsigned int _strspn(char *s, char *accept)                     {                                                                       unsigned int sum = 0;
-        char *ptr = accept;
+#include "main.h"
 
-        while (*s != 0)
-        {
-                if (*s == *ptr && *ptr != 0)
-                {
-                        sum++;
-                        s++;
-                        ptr = accept;
-                }
-                else
-                        ptr++;                                                  if (*ptr == 0)                                                          return (sum);                                   }                                                               return (sum);                                           }
+/**
+ * _strspn - gets lengthof a prefix substring
+ * @s: string to check
+ * @accept: string to check against
+ *
+ * Return: number of bytes of s in accept
+ */
+unsigned int _strspn(char *s, char *accept)
+{
+	unsigned int i, j;
+
+	for (i = 0; s[i]; i++)
+	{
+		for (j = 0; accept[j]; j++)
+		{
+			if (s[i] == accept[j])
+				break;
+		}
+		if (!accept[j])
+			break;
+	}
+	return (i);
+}
